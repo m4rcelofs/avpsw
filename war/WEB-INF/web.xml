@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  
+  <!-- Servlets -->
+  
+  <servlet>
+    <servlet-name>check-psw</servlet-name>
+    <servlet-class>av.psw.server.avpsw.CheckPswServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>check-psw</servlet-name>
+    <url-pattern>/admin/check-psw</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>sg-finder</servlet-name>
+    <servlet-class>av.psw.server.sg.SGFinderServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>sg-finder</servlet-name>
+    <url-pattern>/admin/sg-finder</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Avpsw.html</welcome-file>
+  </welcome-file-list>
+  
+  
+  	<!-- private urls -->
+	<security-constraint>
+        <web-resource-collection>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+</web-app>

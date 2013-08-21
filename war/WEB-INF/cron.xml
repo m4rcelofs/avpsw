@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/admin/check-psw</url>
+    <description>verifies new psws every day</description>
+    <schedule>every 24 hours</schedule>
+  </cron>
+  
+  <!-- 
+  <cron>
+    <url>/admin/sg-finder</url>
+    <description>verifies new giveaways every 5min</description>
+    <schedule>every 5 minutes</schedule>
+  </cron>
+   -->
+   
+</cronentries>
