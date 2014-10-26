@@ -17,19 +17,10 @@
     <url-pattern>/admin/check-psw</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>sg-finder</servlet-name>
-    <servlet-class>av.psw.server.sg.SGFinderServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>sg-finder</servlet-name>
-    <url-pattern>/admin/sg-finder</url-pattern>
-  </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>Avpsw.html</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
   
