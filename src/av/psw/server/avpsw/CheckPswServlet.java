@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import av.psw.server.Mailer;
-import av.psw.server.avpsw.sources.FreeActivator;
 import av.psw.server.avpsw.sources.Source;
+import av.psw.server.avpsw.sources.TrialEsetKeys;
 
 import com.google.appengine.api.urlfetch.HTTPRequest;
 import com.google.appengine.api.urlfetch.URLFetchService;
@@ -46,8 +46,7 @@ public class CheckPswServlet extends HttpServlet {
 
 		try {
 
-			// Source source = new Nod327();
-			Source source = new FreeActivator();
+			Source source = new TrialEsetKeys();
 
 			HTTPRequest request = new HTTPRequest(source.getUrl());
 			request.getFetchOptions().doNotFollowRedirects();
