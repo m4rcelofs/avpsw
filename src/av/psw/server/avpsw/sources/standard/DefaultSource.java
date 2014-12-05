@@ -1,11 +1,11 @@
-package av.psw.server.avpsw.sources;
+package av.psw.server.avpsw.sources.standard;
 
 import java.net.URL;
 
-public interface Source {
+public interface DefaultSource {
 
 	public URL getUrl();
-	
+
 	public String parse(String html);
-	
+
 }

@@ -13,22 +13,23 @@ public class Mailer {
 	 * @param nameEmails
 	 *            [name][email]
 	 */
-	public void mail(String subject, String message, String[]... nameEmails)
-			throws Exception {
+	public static void mail(String subject, String message,
+			String[]... nameEmails) throws Exception {
 
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
 
-		Message msg = new MimeMessage(session);
-		msg.setFrom(new InternetAddress("mr.marcelofs@gmail.com"));
+		for (String[] nameEmail : nameEmails) {
+			Message msg = new MimeMessage(session);
 
-		for (String[] nameEmail : nameEmails)
+			msg.setFrom(new InternetAddress("eset@av-psw.appspotmail.com"));
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					nameEmail[1], nameEmail[0]));
 
-		msg.setSubject(subject);
-		msg.setText(message);
-		Transport.send(msg);
+			msg.setSubject(subject);
+			msg.setText(message);
+			Transport.send(msg);
+		}
 
 	}
 

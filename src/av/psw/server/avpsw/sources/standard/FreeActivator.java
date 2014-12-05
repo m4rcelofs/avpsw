@@ -1,4 +1,4 @@
-package av.psw.server.avpsw.sources;
+package av.psw.server.avpsw.sources.standard;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,7 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-public class FreeActivator implements Source {
+public class FreeActivator implements DefaultSource {
 
 	@Override
 	public URL getUrl() {

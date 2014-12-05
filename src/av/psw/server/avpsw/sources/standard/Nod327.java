@@ -1,9 +1,9 @@
-package av.psw.server.avpsw.sources;
+package av.psw.server.avpsw.sources.standard;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Nod327 implements Source {
+public class Nod327 implements DefaultSource {
 
 	@Override
 	public URL getUrl() {

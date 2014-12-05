@@ -1,26 +1,33 @@
-package av.psw.server.avpsw.sources;
+package av.psw.server.avpsw.sources.indirect;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class TrialEsetKeys implements Source {
+public class TrialEsetKeys implements IndirectSource {
 
 	@Override
 	public URL getUrl() {
-		try {
-			return new URL(
-					"http://trialesetkeys.com/sites/default/files/js/js_V7UEunRb7q8Vb7Uj7ZbiCZUZn86j3VQp-BuE9WbikEs.js");
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			return null;
+		return toURL("http://trialesetkeys.com/");
+	}
+
+	@Override
+	public URL[] parseIndirectUrls(String html) {
+		Document doc = Jsoup.parse(html);
+		Elements elements = doc.select("head > script");
+		List<URL> srcs = new ArrayList<>();
+		for (Element e : elements) {
+			String src = e.attr("src");
+			if (src != null && !src.isEmpty())
+				srcs.add(toURL(src));
 		}
+		return srcs.toArray(new URL[srcs.size()]);
 	}
 
 	@Override
@@ -45,10 +52,12 @@ public class TrialEsetKeys implements Source {
 		return text.toString();
 	}
 
-	public static void main(String[] args) throws IOException {
-		Source source = new TrialEsetKeys();
-		String js = IOUtils.toString(source.getUrl());
-		String html = source.parse(js);
-		System.out.println(html);
+	private URL toURL(String s) {
+		try {
+			return new URL(s);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
