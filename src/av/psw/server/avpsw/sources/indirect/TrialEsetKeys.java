@@ -33,7 +33,7 @@ public class TrialEsetKeys implements IndirectSource {
 	@Override
 	public String parse(String js) {
 		int tableBegins = js.indexOf("<table id=\"table_4_key\">");
-		int tableEnds = js.indexOf("</table>", tableBegins) + 8;
+		int tableEnds = js.indexOf("</table>';", tableBegins) + 8;
 		String html = js.substring(tableBegins, tableEnds);
 
 		Document doc = Jsoup.parse(html);
@@ -44,8 +44,9 @@ public class TrialEsetKeys implements IndirectSource {
 			if (row.childNodes().size() > 2) {
 				String username = row.child(0).text();
 				String password = row.child(2).text();
-				text.append(username).append(" : ").append(password)
-						.append("\n\n");
+				if (username.startsWith("TRIAL"))
+					text.append(username).append(" : ").append(password)
+							.append("\n\n");
 			}
 		}
 
