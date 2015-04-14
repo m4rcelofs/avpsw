@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import av.psw.server.avpsw.sources.PswdStrategy;
 import av.psw.server.avpsw.sources.indirect.IndirectStrategy;
 import av.psw.server.avpsw.sources.indirect.TrialEsetKeys;
+import av.psw.server.avpsw.sources.standard.DefaultStrategy;
+import av.psw.server.avpsw.sources.standard.TrialEsetKeysV2;
 
 public class CheckPswServlet extends HttpServlet {
 
@@ -35,7 +37,7 @@ public class CheckPswServlet extends HttpServlet {
 
 		try {
 
-			PswdStrategy strategy = new IndirectStrategy(new TrialEsetKeys());
+			PswdStrategy strategy = new DefaultStrategy(new TrialEsetKeysV2());
 			mail("eset", strategy.run(), emails);
 
 		} catch (SocketTimeoutException e) {
