@@ -15,6 +15,7 @@ import av.psw.server.avpsw.sources.PswdStrategy;
 import av.psw.server.avpsw.sources.indirect.IndirectStrategy;
 import av.psw.server.avpsw.sources.indirect.TrialEsetKeys;
 import av.psw.server.avpsw.sources.standard.DefaultStrategy;
+import av.psw.server.avpsw.sources.standard.EsetNod32AntivirusTrialKey;
 import av.psw.server.avpsw.sources.standard.TrialEsetKeysV2;
 
 public class CheckPswServlet extends HttpServlet {
@@ -25,8 +26,8 @@ public class CheckPswServlet extends HttpServlet {
 			.getName());
 
 	private String[][] emails = { { "marcelo", "mr.marcelofs@gmail.com" },
-			{ "alice", "alice.afs@gmail.com" },
-			{ "sandra", "sandra.rfs@gmail.com" } };
+								  { "sandra", "sandra.rfs@gmail.com" } 
+	 							};
 
 	@Override
 	public void doGet(final HttpServletRequest req,
@@ -37,8 +38,10 @@ public class CheckPswServlet extends HttpServlet {
 
 		try {
 
-			PswdStrategy strategy = new DefaultStrategy(new TrialEsetKeysV2());
-			mail("eset", strategy.run(), emails);
+			PswdStrategy strategy = new DefaultStrategy(new EsetNod32AntivirusTrialKey());
+			String result = strategy.run();
+//			res.getWriter().write(result);
+			mail("eset", result, emails);
 
 		} catch (SocketTimeoutException e) {
 			log.info(e.toString() + ", retrying");
